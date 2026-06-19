@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game KNB? - Player</title>
+    <link href="https://fonts.googleapis.com/css2?family=Impact&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; padding: 20px; text-align: center; }
+        h2 { font-family: 'Impact', sans-serif; color: #facc15; margin-bottom: 20px; }
+        input { width: 100%; max-width: 300px; padding: 15px; margin: 10px 0; border-radius: 10px; border: 2px solid #3b82f6; background: #1e293b; color: white; font-size: 1rem; }
+        button { font-family: 'Impact', sans-serif; width: 100%; max-width: 330px; padding: 15px; border: none; border-radius: 10px; background: #22c55e; color: #000; font-size: 1.5rem; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>GAME KNB? PLAYER</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="text" id="answer" placeholder="Enter Answer">
+    <button onclick="sendAnswer()">SUBMIT ANSWER</button>
+
+    <script type="module">
+        // Paste your Firebase Config here as shown in previous step
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+        
+        const firebaseConfig = { /* PASTE CONFIG */ };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.sendAnswer = () => {
+            const name = document.getElementById('name').value;
+            const answer = document.getElementById('answer').value;
+            if(!name || !answer) return alert("Please fill all fields!");
+            push(ref(db, 'answers/'), { name, answer, timestamp: Date.now() });
+            alert("Answer Sent!");
+        };
+    </script>
+</body>
+</html>
