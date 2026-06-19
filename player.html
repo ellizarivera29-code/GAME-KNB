@@ -19,7 +19,7 @@
     <button onclick="sendAnswer()">SUBMIT ANSWER</button>
 
     <script type="module">
-        // Paste your Firebase Config here as shown in previous step
+       const app = initializeApp(firebaseConfig);/* PASTE YOUR FIREBASE CONFIG HERE */ };
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
         
